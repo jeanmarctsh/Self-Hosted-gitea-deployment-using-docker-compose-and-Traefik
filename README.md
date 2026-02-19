@@ -3,7 +3,6 @@
 
 Prise en main et utilisation de Gitea comme serveur Git auto-hébergé.
 
-__Pour voir la configuration complète, veuillez selectionner la branche gitea__
 
 ---
 
