@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🚀 APERÇU AVANT Déploiement de Gitea avec Docker-compose
 
 __Pour voir la configuration complète, veuillez selectionner la branche Gitea__
@@ -24,3 +25,6 @@ Dans le monde actuel, nous voyons bel et bien comment il est important non seule
 [![Email](https://img.shields.io/badge/Email-red?style=for-the-badge&logo=gmail)](mailto:jeanmarctshimbombo@gmail.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/jean-marc-ngandu-b60796222)
 [![GitHub](https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github)](https://github.com/jeanmarctsh)
+=======
+configuration
+>>>>>>> 435cbf389c3ca7b9cc9a2e5d3308684959800d8c
