@@ -1,22 +1,36 @@
 
-# 🚀 APERÇU AVANT Déploiement de Gitea avec Docker-compose
+# 🚀 Déploiement de Gitea avec Docker-compose
 
-__Pour voir la configuration complète, veuillez selectionner la branche Gitea__
+Prise en main et utilisation de Gitea comme serveur Git auto-hébergé.
+
+__Pour voir la configuration complète, veuillez selectionner la branche gitea__
 
 ---
 
-## 📑 SOMMAIRES
+## 🎯 BUT
 
-- [� APERÇU AVANT Déploiement de Gitea avec Docker-compose](#-aperçu-avant-déploiement-de-gitea-avec-docker-compose)
-  - [📑 SOMMAIRES](#-sommaires)
-  - [📌 DESCRIPTION](#-description)
-  - [📫 CONTACT](#-contact)
-  
+Déployer un serveur Gitea localement afin d’héberger et sécuriser différents projets sans dépendre d’une plateforme externe.
+
 ---
 
-## 📌 DESCRIPTION
+## 🚀 OJECTIFS
 
-Dans le monde actuel, nous voyons bel et bien comment il est important non seulement d’effectuer une sauvegarde régulière mais aussi d’avoir en place plusieurs versions permettant de revenir facilement vers une version souhaitée en cas de non fonctionnement correct d'une version déployée. Afin d’assurer cela, il existe plusieurs outils, dans le cadre notre projet nous allons utiliser Gitea comme serveur afin de pousser nos différentes configurations.
+Assurer le versioning, la collaboration et l’automatisation de différents projets.
+
+---
+
+## 📊 DASHBOARD
+
+![Image](Images/Exemplaire_dépôt_gitea.PNG)
+
+---
+
+## 🛠️ TECHNOLOGIES UTILISÉES
+
+    Docker
+    Docker Compose
+    Git
+    Linux
 
 ---
 
