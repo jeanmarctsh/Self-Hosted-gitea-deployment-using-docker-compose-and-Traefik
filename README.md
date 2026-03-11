@@ -1,4 +1,4 @@
-# 🚀 APERÇU AVANT Déploiement de Gitea avec Docker-compose
+# 🚀 Prise en main et Déploiement de Gitea avec Docker-compose
 
 __Pour voir la configuration complète, veuillez selectionner la branche Gitea__
 
