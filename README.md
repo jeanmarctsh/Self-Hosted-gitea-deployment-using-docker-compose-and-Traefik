@@ -15,17 +15,20 @@ Etant un projet opensource, legère,  il permet la revision, la collaboration, l
 ## Résultat attendu
 
 L'objectif final est de disposer d'une instance Gitea pleinement opérationnelle en local. Cela permet :
-    * 🔒 **Sécurité et souveraineté** : Une révision de code, une collaboration et un déploiement de vos différents projets de manière interne, privée et totalement sécurisée.
-    * 🌐 **Indépendance réseau** : Une infrastructure locale qui fonctionne de manière autonome, sans dépendre d'une connexion Internet pour les flux de développement quotidiens.
 
+    1. Sécurité et souveraineté : Une révision de code, une collaboration et un déploiement de vos différents projets de manière interne, privée et totalement sécurisée.
 
-##  🛠️ PREREQUIS
+    2. Indépendance réseau : Une infrastructure locale qui fonctionne de manière autonome, sans dépendre d'une connexion Internet pour les flux de développement quotidiens.
 
-Système d'exploitation : Linux (de préférence) ou Windows
-Disque et stockage : SSD 25GO
-RAM : 4GO minimum
-CONNECTIVITE : Bonne connectivité internet au départ 
-ADRESSAGE IP : une adresse IP fixe
+---
+
+##  🛠️ Prérequis
+
+1. Système d'exploitation : Linux (de préférence) ou Windows
+2. Disque et stockage : SSD 25GO
+3. RAM : 4GO minimum
+4. CONNECTIVITE : Bonne connectivité internet au départ 
+5. ADRESSAGE IP : une adresse IP fixe
 
 ---
 
@@ -70,7 +73,7 @@ Installation du serveur Gitea
 Au niveau de la home directory faire ce qui suit:
 
 ```bash
-sudo mkdir nom du dossier && cd nom du dossier
+mkdir nom du dossier && cd nom du dossier
 
 ```
 Exemple:
@@ -79,6 +82,8 @@ Exemple:
 mkdir /home/marco/gitea && cd /home/marco/gitea
 
 ```
+
+---
 ⚠️ Nota: Veiller à la gestion de propriété des fichiers. 
 
 ```bash
