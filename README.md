@@ -87,13 +87,13 @@ mkdir /home/marco/gitea && cd /home/marco/gitea
 ⚠️ Nota: Veiller à la gestion de propriété des fichiers. 
 
 ```bash
-sudo chown -R user:user chemin vers le dossier du travail
+sudo chown -R $USER:$USER chemin vers le dossier du travail
 
 ```
 Exemple:
 
 ```bash
-sudo chown -R marco:marco /home/marco/gitea
+sudo chown -R $USER:$USER /home/marco/gitea
 
 ```
 ---
@@ -139,11 +139,12 @@ docker compose -f gitea.yml log
 
 ```
 ---
-
+Pour afficher la liste complète de tous les conteneurs de votre machine, qu'ils soient allumés ou éteints
 ```bash
 docker ps -a
 
 ```
+---
 ## 🌐 Configuration initiale via l'interface Web
 
 Ouvrez votre navigateur web et rendez-vous sur l'adresse `http://<VOTRE_IP_FIXE>:3000`. Renseignez les champs suivants avant de valider l'installation :
