@@ -1,6 +1,6 @@
 networks:
   gitea:
-    external: true
+    external: true  ## please before execute this file, make sure to create the volume on the host (docker volume create gitea)
 
 services:
   server:
@@ -40,5 +40,73 @@ services:
   
     volumes:
       - ./lab_postgres:/var/lib/postgresql/data
+
+    # define route for the app
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.server.rule=Host(`server.docker.localhost`)"
+      - "traefik.http.routers.server.entrypoints=websecure"
+      - "traefik.http.routers.server.tls=true"
+
+  
+  traefik:
+    image: traefik:v3.7.5
+    container_name: traefik
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+
+
+    networks:
+      - gitea
+
+
+    ports:
+      - "80:80"
+      - "443:443"
+    
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./gitea_deploy/certs:/certs:ro
+      - ./gitea_deploy/dynamic:/dynamic:ro
+
+
+    command:
+      
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+      - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
+      - "--entrypoints.websecure.address=:443"
+      - "--entrypoints.websecure.http.tls=true"
+
+    
+      - "--providers.file.filename=/gitea_deploy/dynamic/tls.yaml"
+       # Providers 
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.network=gitea"
+
+      # API & Dashboard for the app
+      - "--api.dashboard=true"
+      - "--api.insecure=false"
+
+      labels:
+      # Enable self‑routing
+      - "traefik.enable=true"
+
+      # Dashboard router
+      - "traefik.http.routers.dashboard.rule=Host(`dashboard.docker.localhost`)"
+      - "traefik.http.routers.dashboard.entrypoints=websecure"
+      - "traefik.http.routers.dashboard.service=api@internal"
+      - "traefik.http.routers.dashboard.tls=true"
+
+
+       # Basic‑auth middleware
+      - "traefik.http.middlewares.dashboard-auth.basicauth.users=<PASTE_HASH_HERE>"
+      - "traefik.http.routers.dashboard.middlewares=dashboard-auth@docker"
+
+    
+
 
 
