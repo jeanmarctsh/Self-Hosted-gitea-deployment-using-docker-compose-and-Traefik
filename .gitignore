@@ -1,0 +1,9 @@
+## Skipped file(s)
+
+.env*
+*.key
+*.crt
+*.pem
+## No skipped file(s)
+
+!.env.example
