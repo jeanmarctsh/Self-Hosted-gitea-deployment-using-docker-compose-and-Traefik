@@ -3,6 +3,8 @@
 
 Prise en main et déploiement du serveur Gitea auto-hébergé.
 
+
+__Projet en cours de restructturation__
 ---
 
 ## 🎯 A propos de l'outil
