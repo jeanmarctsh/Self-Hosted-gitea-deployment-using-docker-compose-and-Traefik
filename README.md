@@ -21,6 +21,7 @@ L'objectif final est de disposer d'une instance Gitea pleinement opérationnelle
     1. Sécurité et souveraineté : Une révision de code, une collaboration et un déploiement de vos différents projets de manière interne, privée et totalement sécurisée.
 
     2. Indépendance réseau : Une infrastructure locale qui fonctionne de manière autonome, sans dépendre d'une connexion Internet pour les flux de développement quotidiens.
+    3. Utilisation de treafik comme reverse proxy 
 
 ---
 
@@ -161,6 +162,12 @@ Ouvrez votre navigateur web et rendez-vous sur l'adresse `http://<VOTRE_IP_FIXE>
 
 
 ---
+
+## Dashboard de trafik comme reverse proxy
+
+![Dashboard Traefik](Images/treafik_dashboard/Capture%20d’écran%20du%202026-07-11%2021-39-57.png)
+
+
 
 ## 📫 CONTACT
 
