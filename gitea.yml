@@ -1,21 +1,13 @@
-networks:
-  gitea:
-    external: true  ## please before execute this file, make sure to create the volume on the host (docker volume create gitea)
-
 services:
-  server:
+
+  gitea:
     image: docker.gitea.com/gitea:1.26.1
     container_name: gitea
-    environment:
-      - USER_UID=1000
-      - USER_GID=1000
-      - GITEA__database__DB_TYPE=postgres
-      - GITEA__database__HOST=db:5432
-      - GITEA__database__NAME=gitea
-      - GITEA__database__USER=gitea
-      - GITEA__database__PASSWD=gitea
+    env_file:
+      - ./.env.app
     restart: always
     networks:
+      - post_db
       - gitea
     volumes:
       - ./lab_data:/data
@@ -26,87 +18,75 @@ services:
       - "222:22"
     depends_on:
       - db
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.gitea.rule=Host(`gitea.docker.localhost`)"
+      - "traefik.http.routers.gitea.entrypoints=websecure"
+      - "traefik.http.routers.gitea.tls=true"
+      # Attention: nom du réseau réel vu par Traefik est bien "gitea"
+      - "traefik.docker.network=gitea"
+      - "traefik.http.routers.gitea.service=gitea-service"
+      - "traefik.http.services.gitea.loadbalancer.server.port=3000"
 
   db:
     image: docker.io/library/postgres:14
     restart: always
-    environment:
-      - POSTGRES_USER=gitea
-      - POSTGRES_PASSWORD=gitea
-      - POSTGRES_DB=gitea
-    ## rajout du volume à la longue pour la persistance de données (lab et postgres)
+    env_file:
+      - ./.env.db
     networks:
-      - gitea
-  
+      - post_db
     volumes:
       - ./lab_postgres:/var/lib/postgresql/data
 
-    # define route for the app
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.server.rule=Host(`server.docker.localhost`)"
-      - "traefik.http.routers.server.entrypoints=websecure"
-      - "traefik.http.routers.server.tls=true"
-
-  
   traefik:
     image: traefik:v3.7.5
     container_name: traefik
     restart: unless-stopped
     security_opt:
-      - no-new-privileges:true
-
-
+      - no-new-privileges:true      
     networks:
       - gitea
-
-
     ports:
       - "80:80"
       - "443:443"
-    
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./gitea_deploy/certs:/certs:ro
-      - ./gitea_deploy/dynamic:/dynamic:ro
-
-
+      - ./certs:/certs:ro
+      - ./dynamic:/dynamic:ro
     command:
-      
       - "--entrypoints.web.address=:80"
       - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
       - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
       - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
       - "--entrypoints.websecure.address=:443"
       - "--entrypoints.websecure.http.tls=true"
-
-    
-      - "--providers.file.filename=/gitea_deploy/dynamic/tls.yaml"
-       # Providers 
-      - "--providers.docker=true"
+      - "--providers.file.filename=/dynamic/tls.yaml"
+      - "--providers.docker=true" # Providers 
       - "--providers.docker.exposedbydefault=false"
       - "--providers.docker.network=gitea"
-
-      # API & Dashboard for the app
-      - "--api.dashboard=true"
+      - "--api.dashboard=true" # API & Dashboard for the app
       - "--api.insecure=false"
-
-      labels:
-      # Enable self‑routing
-      - "traefik.enable=true"
-
+      # Observability
+      - "--log.level=INFO"
+      #- "--log.level=DEBUG"
+      - "--accesslog=true"
+      
+    labels:
+      - "traefik.enable=true" # Enable self‑routing
       # Dashboard router
       - "traefik.http.routers.dashboard.rule=Host(`dashboard.docker.localhost`)"
       - "traefik.http.routers.dashboard.entrypoints=websecure"
       - "traefik.http.routers.dashboard.service=api@internal"
       - "traefik.http.routers.dashboard.tls=true"
-
-
        # Basic‑auth middleware
-      - "traefik.http.middlewares.dashboard-auth.basicauth.users=<PASTE_HASH_HERE>"
+      - "traefik.http.middlewares.dashboard-auth.basicauth.users=${GITEA_BASIC_AUTH}" 
       - "traefik.http.routers.dashboard.middlewares=dashboard-auth@docker"
+  
+networks:
 
-    
+  post_db:
+    driver: bridge
 
-
+  gitea:
+    external: true
 
