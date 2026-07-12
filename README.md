@@ -4,7 +4,7 @@
 Prise en main et déploiement du serveur Gitea auto-hébergé.
 
 
-__Projet en cours de restructturation.__
+🚧 __Projet en cours de restructuration.__
 ---
 
 ## 🎯 A propos de l'outil
@@ -161,14 +161,16 @@ Ouvrez votre navigateur web et rendez-vous sur l'adresse `http://<VOTRE_IP_FIXE>
   | 4  | Gitea Base URL         |  http://<VOTRE_IP_FIXE>:3000/                                             |
 
 
+##  Dashboard gitea déployé avec docker compose utilisant treafik comme reverse proxy
+
+![Dashboard Gitea](Images/treafik_dashboard/Capture%20d’écran%20du%202026-07-12%2014-47-24.png)
 ---
 
 ## Dashboard de trafik comme reverse proxy
 
 ![Dashboard Traefik](Images/treafik_dashboard/Capture%20d’écran%20du%202026-07-11%2021-39-57.png)
 
-
-
+---
 ## 📫 CONTACT
 
 [![Email](https://img.shields.io/badge/Email-red?style=for-the-badge&logo=gmail)](mailto:jeanmarctshimbombo@gmail.com)
