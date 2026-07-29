@@ -1,27 +1,26 @@
+🚧🚧🚧__Projet en cours de restructuration.__
 
-# 🚀 Déploiement de Gitea avec Docker-compose
+<h1 align="center">  Déploiement de Gitea avec Docker compose </h1>
 
-Prise en main et déploiement du serveur Gitea auto-hébergé.
+<h2 align="center"> Prise en main et déploiement du serveur Gitea auto-hébergé. </h2>
 
-
-🚧 __Projet en cours de restructuration.__
 ---
 
 ## 🎯 A propos de l'outil
 
-Gitea est un service de développement logiciel tout-en-un facile à utiliser et auto-hébergé.
+Gitea est une plateforme de gestion de code source et de collaboratiion tout-en-un facile à utiliser et auto-hébergé.
 Etant un projet opensource, legère,  il permet la revision, la collaboration, l'automatisation integrée, etc... c'est un Comparable à Github, Gitlab, Bitbucket.
 
 ---
 
-## Résultat attendu
+## Résultats attendus
 
-L'objectif final est de disposer d'une instance Gitea pleinement opérationnelle en local. Cela permet :
+L'objectif final ? Disposer d'une instance Gitea pleinement opérationnelle en local. Afin de permettre :
 
-    1. Sécurité et souveraineté : Une révision de code, une collaboration et un déploiement de vos différents projets de manière interne, privée et totalement sécurisée.
+    1. La sécurité et la souveraineté : Pourquoi? Pour une révision de code, une collaboration et un déploiement de différents projets de manière interne, privée et totalement sécurisée.
 
-    2. Indépendance réseau : Une infrastructure locale qui fonctionne de manière autonome, sans dépendre d'une connexion Internet pour les flux de développement quotidiens.
-    3. Utilisation de treafik comme reverse proxy 
+    2. Une absence de dépendance extérieure : Permettre un fonctionnement autonome au sein d'une infranstructure local et ce, de manière privée
+    3. Utilisation de treafik comme reverse proxy pour la détection automatique de différentes routes, rendre l'accès externe beaucoup propre
 
 ---
 
@@ -32,6 +31,9 @@ L'objectif final est de disposer d'une instance Gitea pleinement opérationnelle
 3. RAM : 4GO minimum
 4. CONNECTIVITE : Bonne connectivité internet au départ 
 5. ADRESSAGE IP : une adresse IP fixe
+6. Git: Doit être installé pour clôner le projet sur le dépôt distant
+7. OPENSSL: Permettre la création d'une clé publique et privée, la gestion de certificats, etc...
+8. Docker Engine et docker compose : Permettre la conteneurisation et le déploiement des différents services de l'architecture.
 
 ---
 
@@ -87,7 +89,8 @@ mkdir /home/marco/gitea && cd /home/marco/gitea
 ```
 
 ---
-⚠️ Nota: Veiller à la gestion de propriété des fichiers. 
+⚠️ Préparation du dossier avec les bons droits ($USER en cas de developpement local)
+⚠️ Pour un developpement en production ? veuillez définir un utilisateur dedié
 
 ```bash
 sudo chown -R $USER:$USER chemin vers le dossier du travail
@@ -100,80 +103,27 @@ sudo chown -R $USER:$USER /home/marco/gitea
 
 ```
 ---
-⚠️ Voir les différentes propriétes du repertoire du travail:
+⚠️ Voir les différentes propriétes du repertoire dans lequel on travaille:
 
 ```bash
 ls -la /home/marco/gitea
 
 ```
----
 
-⚠️ Création de diférents repertoires pour la gestion de volume, afin de permettre un bon déploiment.
-⚠️ Veiller également à la gestion de propriété des fichiers.
+---
 
 ```bash
-cd /home/marco/gitea && sudo mkdir lab_data lab_postgres 
+cd /home/marco/gitea
+
+git clone git@github.com:jeanmarctsh/gitea_deploy.git
+
+cd gitea_deploy
+
+ls -al
+
+## création de repertoires ci-dessous pour la persistance des données conformément aux éléments du fichier
+
+mkdir lab_data lab_postgres 
 
 ```
-
----
-
-Toujours dans le même repertoire du travail faire ce qui suit: 
-
-Configuration complète du fichier gitea.yml ([fichier de configuration gitea ](gitea.yml))
-
-```bash
-sudo nano gitea.yml
-
-```
----
-
-Exécution du fichier gitea.yml en arrière plan
-
-```bash
-docker compose -f gitea.yml up -d
-
-```
----
-Vérification de logs et port d'accès initial de Gitea
-
-```bash
-docker compose -f gitea.yml log
-
-```
----
-Pour afficher la liste complète de tous les conteneurs de votre machine, qu'ils soient allumés ou éteints
-```bash
-docker ps -a
-
-```
----
-## 🌐 Configuration initiale via l'interface Web
-
-Ouvrez votre navigateur web et rendez-vous sur l'adresse `http://<VOTRE_IP_FIXE>:3000`. Renseignez les champs suivants avant de valider l'installation :
-
-
-  | ID | Eléments à renseigner  | Descriptions                                                              |
-  |----|------------------------|---------------------------------------------------------------------------|
-  | 1  | Titre                  | titre du dépôt                                                            |
-  | 2  | SshServerPort          | Le port d'accès ssh qui doit correspondre à celui du fichier gitea.yml    |
-  | 3  | SshServerDomain        | Adresse IP fixe à renseigner                                              |
-  | 4  | Gitea Base URL         |  http://<VOTRE_IP_FIXE>:3000/                                             |
-
-
-##  Dashboard gitea déployé avec docker compose utilisant treafik comme reverse proxy
-
-![Dashboard Gitea](Images/treafik_dashboard/Capture%20d’écran%20du%202026-07-12%2014-47-24.png)
----
-
-## Dashboard de trafik comme reverse proxy
-
-![Dashboard Traefik](Images/treafik_dashboard/Capture%20d’écran%20du%202026-07-11%2021-39-57.png)
-
----
-## 📫 CONTACT
-
-[![Email](https://img.shields.io/badge/Email-red?style=for-the-badge&logo=gmail)](mailto:jeanmarctshimbombo@gmail.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/jean-marc-ngandu-b60796222)
-[![GitHub](https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github)](https://github.com/jeanmarctsh)
 
