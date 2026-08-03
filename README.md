@@ -153,11 +153,12 @@ curl -I http://IP-SERVEUR:3000/
 
 ouvrir le navigateur et saisir l'élément suivant: http://IP-SERVEUR:3000/
 
+ ```
 voici un exemple d'accès sans reverse proxy:
 
 ![Dashboard Gitea](Images/Connexion_à_gitea.PNG)
 
- ```
+
    ### PARTIE 2: Configuration du routage dynamique en https avec Traefik comme reverse proxy
 
 Prérequis:
