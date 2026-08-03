@@ -201,8 +201,6 @@ cd dynamic
 
 touch tls.yml 
 
-Le contenu et la structure de ce fichier sont disponibles ici : [consulter la configuration du fichier tls.yml](dynamic/tls.yml)
-
 # une fois les étapes ci-dessus finalisées , veuilez mettre à jour le fichier gitea.yml via la commande:
 
 docker compose -f gitea.yml up -d
@@ -211,6 +209,8 @@ docker compose -f gitea.yml up -d
 
 docker ps
 ```
+
+Note: Le contenu et la structure de ce fichier sont disponibles ici : [consulter la configuration du fichier tls.yml](dynamic/tls.yml)
 
 ## Accessibilité au navigateur web
 
