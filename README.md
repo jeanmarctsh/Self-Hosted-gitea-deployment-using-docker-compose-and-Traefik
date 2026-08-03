@@ -222,6 +222,8 @@ une fois la configuration faite, veuillez saisir les informations ci-dessous au 
 | 1 | **Dashboard Traefik** | `https://dashboard.docker.localhost` | Accès dynamique au tableau de bord en HTTPS via Traefik |
 | 2 | **Serveur Gitea** | `https://gitea.docker.localhost` | Accès dynamique au serveur Gitea en HTTPS via Traefik |
 
+---
+
 ## Présentation visuelle 
 
 l'utilisation de traefik pour les différents services déployés se présentent de la manière ci-dessous:
