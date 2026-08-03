@@ -224,17 +224,17 @@ une fois la configuration faite, veuillez saisir les informations ci-dessous au 
 
 ---
 
-## Présentation visuelle 
+## 📸 Présentation visuelle 
 
-l'utilisation de traefik pour les différents services déployés se présentent de la manière ci-dessous:
+L'utilisation de Traefik pour les différents services déployés se présente de la manière suivante :
 
-1. Pour la partie dashboard avec Traefik comme reverse proxy
+1. **Pour la partie dashboard avec Traefik comme reverse proxy**
 
-![Dashboard Traefik](Images/Traefik_dashboard/Capture%20d’écran%20du%202026-07-11%2021-39-57.png)
+![Dashboard Traefik](Images/traefik_dashboard/Capture%20d’écran%20du%202026-07-11%2021-39-57.png)
 
-2. Dashboard gitea déployé avec docker compose utilisant Traefik comme reverse proxy
+2. **Dashboard Gitea déployé avec Docker Compose utilisant Traefik comme reverse proxy**
 
-![Dashboard Gitea](Images/Traefik_dashboard/Capture%20d’écran%20du%202026-07-12%2014-47-24.png)
+![Dashboard Gitea](Images/traefik_dashboard/Capture%20d’écran%20du%202026-07-12%2014-47-24.png)
 
 ---
 
