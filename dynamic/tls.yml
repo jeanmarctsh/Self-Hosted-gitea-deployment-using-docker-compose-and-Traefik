@@ -1,7 +1,7 @@
 tls:
   certificates:
-    - certFile: /gitea_deploy/certs/ # to complete
-      keyFile:  /gitea_deploy/certs/ #to complete
+    - certFile: /gitea_deploy/certs/ 
+      keyFile:  /gitea_deploy/certs/ 
   
   options:
     default:
