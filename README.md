@@ -2,7 +2,8 @@
 
 <h1 align="center">  Déploiement de Gitea avec Docker compose </h1>
 
-<h2 align="center"> Prise en main et déploiement du serveur Gitea auto-hébergé. </h2>
+## But 
+Prise en main et déploiement du serveur Gitea auto-hébergé pour une utilisation locale et sécurisée.
 
 ---
 
@@ -228,9 +229,11 @@ une fois la configuration faite, veuillez saisir les informations ci-dessous au 
 
 L'utilisation de Traefik pour les différents services déployés se présente de la manière suivante :
 
+
 1. **Pour la partie dashboard avec Traefik comme reverse proxy**
 
 ![Dashboard Traefik](Images/traefik_dashboard/Capture%20d’écran%20du%202026-07-11%2021-39-57.png)
+
 
 2. **Dashboard Gitea déployé avec Docker Compose utilisant Traefik comme reverse proxy**
 
