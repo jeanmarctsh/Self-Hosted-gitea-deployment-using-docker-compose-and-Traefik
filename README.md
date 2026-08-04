@@ -2,6 +2,12 @@
 
 <h1 align="center">  Déploiement de Gitea avec Docker compose </h1>
 
+## Problématique
+
+
+Les équipes et les utilisateurs individuels peuvent être confrontés à une dépendance aux plateformes externes pour héberger et gérer leurs projets, ce qui limite le contrôle sur le code source et les données associées. Il devient donc nécessaire de disposer d’une solution autonome permettant une gestion privée, sécurisée et maîtrisée de différents projets.
+
+
 ## But 
 Prise en main et déploiement du serveur Gitea auto-hébergé pour une utilisation locale et sécurisée.
 
@@ -55,6 +61,23 @@ GITEA_DEPLOY/
 └── README.md                                                  # Description générale du projet
 ```
 ---
+
+## Avantage de déployer gitea avec docker compose
+
+le déploiement de gita avec docker prrésente les avantages ci-après:
+
+1. La simplicité du déploiment
+2. L'isolation
+3. La portabilité et la maintenance simplifiée
+
+## Incovénients
+
+on dispose des éléments ci-après:
+
+1. Une gestion d’accès moins professionnelle
+2. Une gestion HTTPS moins pratique
+3. Moins adapté à plusieurs services
+4. Mise en place du routage de façon manuelle
 
 ## 💾 Configuration et déploiement
 
@@ -160,6 +183,7 @@ voici un exemple d'accès sans reverse proxy:
 ![Dashboard Gitea](Images/Connexion_à_gitea.PNG)
 
 
+
    ### PARTIE 2: Configuration du routage dynamique en https avec Traefik comme reverse proxy
 
 Prérequis:
@@ -167,6 +191,19 @@ Prérequis:
 1. docker engine + docker compose: Pour installer et configurer le service Traefik
 2. Opennssl: Pour générer la paire de clé
 3. htpasswd issu du paquet apache2-utils: Pour créer et gérer les fichiers de mots de passe pour l'authentification HTTP de  base
+   
+   ### Avantage d'installer gitea avec docker compose et Traefik comme reverse proxy
+
+1. Un accès plus propre aux services
+2. Une gestion centralisée de plusieurs applications
+3. Un routage automatique et une gestion simplifiée pour l'HTTPS
+
+   ### Inconvénients
+
+1. Courbe d’apprentissage un peu plus longue (compréhension requise pour: les routers,
+les services, les entrypoints, etc...)
+2. Dépendance à un composant supplémentaire
+3. Pas nécessaire pour un petit environnement 
 
 ```bash
 # Vérification de l'outil openssl et httppaswd (si absent? veuillez les installer)
@@ -240,6 +277,34 @@ L'utilisation de Traefik pour les différents services déployés se présente d
 ![Dashboard Gitea](Images/traefik_dashboard/Capture%20d’écran%20du%202026-07-12%2014-47-24.png)
 
 ---
+
+## Comparaison des architectures
+
+Voici un tableau comparatif décrivant l'installation de gitea avec docker compose sans reverse proxy et une installation avec docker compose et Traefik comme reverse proxy
+
+
+
+| Critère | Gitea avec Docker compose uniquement | Gitea avec Traefik (Reverse Proxy) |
+|---|---|---|
+| Déploiement | Simple et rapide à mettre en place | Nécessite une configuration supplémentaire |
+| Complexité | Faible, peu de composants à gérer | Plus élevée avec la gestion du reverse proxy |
+| Accès utilisateur | Accès via IP et port (`serveur:3000`) | Accès via un nom de domaine (`gitea.domaine.com`) |
+| Routage | Gestion manuelle des ports | Routage automatique basé sur les règles configurées |
+| HTTPS | Configuration manuelle des certificats | Gestion simplifiée avec automatisation possible des certificats |
+| Ajout de services | Chaque service nécessite souvent un nouveau port | Gestion centralisée de plusieurs services |
+| Maintenance | Plus simple pour un environnement réduit | Demande une maintenance supplémentaire |
+| Évolutivité | Adapté à un petit environnement | Plus adapté à une architecture multi-services |
+| Sécurité | Exposition directe du service | Couche supplémentaire de contrôle via le reverse proxy |
+
+
+Note:  Un déploiement basé uniquement sur Docker compose n'est adapté que pour une installation simple et locale. 
+Tandis que l’ajout de Traefik apporte une architecture plus évolutive, notamment pour la gestion des accès, du HTTPS et de plusieurs services.
+
+## Améliorations futures
+
+1. Intégration de certains outils(awx, autoflow) au sein de gitea
+2. Intégration d’une solution de monitoring basée sur Prometheus et Grafana
+
 
 ## 📫 CONTACT
 
