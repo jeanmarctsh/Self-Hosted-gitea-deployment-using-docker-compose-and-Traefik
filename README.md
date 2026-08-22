@@ -281,7 +281,7 @@ L'utilisation de Traefik pour les différents services déployés se présente d
 
 ![Dashboard Gitea](Images/traefik_dashboard/Capture%20d’écran%20du%202026-07-12%2014-47-24.png)
 
-4. **Exemple d'un projet sur un dépôt Traefik**
+4. **Exemple d'un projet sur un dépôt Gitea avec Traefik comme reverse proxy**
 
 ![Traefik Project](Images/ansible_role.png)
 
