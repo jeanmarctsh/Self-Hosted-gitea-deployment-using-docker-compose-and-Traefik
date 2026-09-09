@@ -1,4 +1,4 @@
-🚧🚧🚧__Projet en cours de restructuration.__
+🚧🚧🚧__Projet en cours de restructuration — DAT en cours de rédaction__
 
 <h1 align="center">  Déploiement de Gitea avec Docker compose </h1>
 
@@ -57,9 +57,15 @@ GITEA_DEPLOY/
 |   └── tls.yml                                                # Configuration TLS dynamique pour Traefik
 |
 ├── Images/                                                    # Captures d'écran et illustrations
-├── gitea.yml                                                  # Fichier général de configuration (YML)
+├── .env                                                       # Variables pour l'authentification de Traefik
+├── .env.app                                                   # Variables destinées à l'application
+├── .env.db                                                    # Variables destinées à la base de données
+├── .env.example                                               # Modèle des variables d'environnement à renseigner
+├── gitea.yml                                                  # Fichier principal de configuration Docker Compose 
 └── README.md                                                  # Description générale du projet
 ```
+> Les fichiers `.env`, `.env.app` et `.env.db` sont exclus du dépôt via `.gitignore`.
+> Le fichier `.env.example` sert de modèle pour leur configuration.
 ---
 
 ## Avantage de déployer gitea avec docker compose
@@ -311,8 +317,9 @@ Tandis que l’ajout de Traefik apporte une architecture plus évolutive, notamm
 
 ## Améliorations futures
 
-1. Intégration de certains outils(awx, autoflow) au sein de gitea
-2. Intégration d’une solution de monitoring basée sur Prometheus et Grafana
+1. Intégration de certains outils(awx, autoflow) au sein de gitea.
+2. Intégration d’une solution de monitoring basée sur Prometheus et Grafana. (suivre l’état et les performances des services déployés.)
+3. Possibilité de migration vers Github, Gitlab selon les besoins et contraintes de l’environnement cible.
 
 
 ## 📫 CONTACT
